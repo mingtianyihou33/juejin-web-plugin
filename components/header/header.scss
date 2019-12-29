@@ -1,0 +1,15 @@
+.ant-layout-header {
+  border: 1px solid rebeccapurple;
+
+  .logo {
+    display: block;
+    width: 5rem;
+    height: 3rem;
+    cursor: pointer;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("https://e-gold-cdn.xitu.io/static/logo.svg?74bae3f");
+  }
+
+}
