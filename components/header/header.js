@@ -3,6 +3,9 @@ import { Layout, Input, Row, Col, Select, Icon } from 'antd'
 import './header.scss'
 
 const { Option } = Select
+const categories = [
+  { value: 'frontend', icon: 'code', label: '前端' }
+]
 
 function Header () {
   return (
@@ -17,8 +20,12 @@ function Header () {
             <Col className="text-primary cursor-pointer">掘金小册</Col>
             <Col className="text-primary cursor-pointer">下载掘金 App</Col>
             <Col>
-              <Select style={{ width: 120 }}>
-                <Option value="lucy">lucy</Option>
+              <Select className="select-border-none select-w-md" value='frontend'>
+                {categories.map(item => (
+                  <Option value={item.value} key={item.value}>
+                    <Icon type={item.icon} className="text-primary"/>&nbsp;&nbsp;&nbsp;{item.label}
+                  </Option>
+                ))}
               </Select>
             </Col>
             <Col>

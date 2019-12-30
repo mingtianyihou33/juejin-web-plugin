@@ -6,9 +6,9 @@
 @layout-header-background: #ffffff;
 @layout-header-height: 4.5rem;
 @layout-header-padding: 0 2.5rem 0 1.8rem;
-@font-size-base: 14px;
-@font-size-md: 15px;
-
+@font-size-base: 1rem;
+@font-size-md: 1.25rem;
+@font-size-lg: 1.35rem;
 .text-primary {
   color: @primary-color;
 }
@@ -21,6 +21,59 @@
   font-size: @font-size-lg;
 }
 
+.select-w-md {
+  width: 100px
+}
+
+.select-w-sm {
+  width: 80px
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.bg-primary {
+  background: @layout-header-background;
+}
+
+.bg-secondary {
+  background: #f8f9fb;
+}
+
+.full {
+  height: 100%;
+  width: 100%;
+}
+
+.full-h {
+  width: 100%;
+}
+
+.full-v {
+  height: 100%;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.ml-auto {
+  margin-left: auto;;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.mr-1 {
+  margin-right: .8rem;
+}
+
+body, html {
+  font-size: 12px;
 }

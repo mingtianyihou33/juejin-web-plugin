@@ -6,6 +6,7 @@ module.exports = withLess(withSass({
   //   importLoaders: 1,
   //   localIdentName: '[local]___[hash:base64:5]',
   // },
+  // postcss支持
   postcssLoaderOptions: {
     parser: true,
     config: {
