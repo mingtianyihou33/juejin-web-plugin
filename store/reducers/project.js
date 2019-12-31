@@ -2,7 +2,7 @@ import {
   PROJECT_CHANGE_CATEGORY, PROJECT_CHANGE_LANG, PROJECT_CHANGE_PERIOD, PROJECT_PUSH_LIST, PROJECT_SET_LIST
 } from '../actionTypes'
 
-const initState = {
+export const initState = {
   category: 'trending', // 热门
   period: 'day',// 今日
   lang: 'javascript', // 语言
@@ -28,5 +28,5 @@ export default function (state = initState, action) {
       state.list.push(...action.list)
       break
   }
-  return {...state}
+  return { ...state }
 }

@@ -1,14 +1,16 @@
 import React from 'react'
 import './articles.scss'
-import {Select} from 'antd'
-import {changeCategory, changeOrder} from "../../store/actions/article";
-import {connect} from 'react-redux'
+import { Select } from 'antd'
+import { changeCategory, changeOrder } from '../../store/actions/article'
+import { connect } from 'react-redux'
+import { getTimeToNow } from '../../util/dateUtil'
 
-const {Option} = Select
+const { Option } = Select
 const mapStateToProps = state => (
   {
     category: state.article.category,
-    order: state.article.order
+    order: state.article.order,
+    list: state.article.list
   }
 )
 const mapDispatchToProps = {
@@ -17,16 +19,31 @@ const mapDispatchToProps = {
 }
 
 const categories = [
-  {value: 'all', label: '首页'},
-  {value: 'frontend', label: '前端'},
-  {value: 'backend', label: '后端'}
+  { value: 'all', label: '首页' },
+  { value: 'frontend', label: '前端' },
+  { value: 'backend', label: '后端' }
 ]
 const orders = [
-  {value: 'heat', label: '热门'},
-  {value: 'time', label: '最新'}
+  { value: 'heat', label: '热门' },
+  { value: 'time', label: '最新' }
 ]
 
-function Articles(props) {
+function Articles (props) {
+  const list = props.list.map(item => {
+    return (
+      <a key={item.id} href={item.url}>
+        <span>{item.collectionCount}</span>
+        <div>
+          <div>{item.title}</div>
+          <div>
+            <span>{getTimeToNow(item.date.iso)}</span>
+            <span>{item.user.username}</span>
+          </div>
+        </div>
+      </a>
+    )
+  })
+
   return (
     <div className='border article'>
       <div className='content-navbar bg-primary text-md'>
@@ -51,6 +68,7 @@ function Articles(props) {
         ))}
       </div>
       <div>
+        {list}
       </div>
     </div>
   )

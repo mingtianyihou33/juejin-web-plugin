@@ -5,7 +5,6 @@ import {
   ARTICLE_SET_LIST,
   CHANGE_CATEGORY
 } from '../actionTypes'
-import fetch from '../../plugins/fetch'
 
 const initState = {
   category: 'frontend',
@@ -15,18 +14,26 @@ const initState = {
   list: []
 }
 
-export function changeCategory(category) {
-  return (dispatch, getState) => {
-    dispatch({type: ARTICLE_CHANGE_CATEGORY, category})
+export function changeCategory (category) {
+  return (dispatch, getState, axios) => {
+    dispatch({ type: ARTICLE_CHANGE_CATEGORY, category })
+    loadArticleList(dispatch, getState, axios)
   }
 }
 
-export function changeOrder(order) {
+export function changeOrder (order) {
   return (dispatch, getState) => {
-    dispatch({type: ARTICLE_CHANGE_ORDER, order})
+    dispatch({ type: ARTICLE_CHANGE_ORDER, order })
   }
 }
 
-export function loadArticleList(dispatch) {
-  fetch('resources/gold')
+export async function loadArticleList (dispatch, getState, axios) {
+  let { list, ...other } = getState().article
+  try {
+    let res = await axios.post('resources/gold', other)
+    console.log(res)
+    dispatch({ type: ARTICLE_SET_LIST, list: res })
+  } catch (e) {
+    console.error(e)
+  }
 }

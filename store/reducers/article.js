@@ -1,6 +1,6 @@
 import {ARTICLE_CHANGE_ORDER, ARTICLE_CHANGE_CATEGORY, ARTICLE_PUSH_LIST, ARTICLE_SET_LIST} from '../actionTypes'
 
-const initState = {
+export const initState = {
   category: 'frontend',
   order: 'heat',
   offset: 0,

@@ -25,3 +25,24 @@ module.exports = withLess(withSass({
 
 ### 3.使用redux
 - 安装 redux react-redux
+
+### 4.客户端请求数据跨域问题解决
+- 安装express http-proxy-middleware
+- 创建server.js文件 修改next的行为，并添加代理
+- 修改package.json 的script命令
+
+```
+  // 之前的
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  // 修改后的
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "cross-env NODE_ENV=production node server.js"
+  },
+```
+
