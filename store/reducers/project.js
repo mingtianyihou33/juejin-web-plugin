@@ -28,5 +28,5 @@ export default function (state = initState, action) {
       state.list.push(...action.list)
       break
   }
-  return state
+  return {...state}
 }

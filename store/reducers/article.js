@@ -1,4 +1,4 @@
-import { ARTICLE_CHANGE_ORDER, ARTICLE_CHANGE_CATEGORY, ARTICLE_PUSH_LIST, ARTICLE_SET_LIST } from '../actionTypes'
+import {ARTICLE_CHANGE_ORDER, ARTICLE_CHANGE_CATEGORY, ARTICLE_PUSH_LIST, ARTICLE_SET_LIST} from '../actionTypes'
 
 const initState = {
   category: 'frontend',
@@ -23,5 +23,5 @@ export default function (state = initState, action) {
       state.list.push(...action.list)
       break
   }
-  return state
+  return {...state}
 }

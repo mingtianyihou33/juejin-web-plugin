@@ -7,7 +7,7 @@
 - less，安装@zeit/next-less less
 - sass，安装@zeit/next-sass node-sass
 - 新建next.config.js文件，添加如下内容
-`
+```javascript
 const withSass = require('@zeit/next-sass')
 const withLess = require('@zeit/next-less')
 module.exports = withLess(withSass({
@@ -21,6 +21,7 @@ module.exports = withLess(withSass({
     }
   }
 }))
-`
-### 使用redux
+```
+
+### 3.使用redux
 - 安装 redux react-redux
