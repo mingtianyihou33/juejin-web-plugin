@@ -45,4 +45,25 @@ module.exports = withLess(withSass({
     "start": "cross-env NODE_ENV=production node server.js"
   },
 ```
+### 5.服务端渲染列表后，如何初始化客户端state数据，让列表保持
+- 在页面入口组件添加静态方法getInitialProps，然后获取要渲染的列表数据，然后然后请求接口数据
+- 然后在组件的props中判断，如果有则设置到state里，用于初始化客服端state数据
+```
+// 服务端渲染时加载首屏数据
+Home.getInitialProps = async () => {
+  console.log('server load data')
+  const server = createService('https://extension-ms.juejin.im/')
+  // 文章列表
+  let articleList = await loadArticleList(null, store.getState, server)
+  return { articleList }
+}
+
+function Home (props) {
+  // 设置文章列表
+  if (props.articleList) {
+    store.dispatch({ type: ARTICLE_SET_LIST, list: props.articleList })
+  }
+  ...
+```
+
 

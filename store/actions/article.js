@@ -31,8 +31,8 @@ export async function loadArticleList (dispatch, getState, axios) {
   let { list, ...other } = getState().article
   try {
     let res = await axios.post('resources/gold', other)
-    console.log(res)
-    dispatch({ type: ARTICLE_SET_LIST, list: res })
+    dispatch && dispatch({ type: ARTICLE_SET_LIST, list: res })
+    return res
   } catch (e) {
     console.error(e)
   }

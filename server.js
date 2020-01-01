@@ -19,7 +19,6 @@ app.prepare().then(() => {
     const proxyConf = require('./proxy')
     const proxyMiddleware = require('http-proxy-middleware')
     Object.keys(proxyConf).forEach(function (context) {
-      // server.all(context + '/*', proxyMiddleware(proxyConf[context]))
       server.use(proxyMiddleware(context, proxyConf[context]))
     })
   }

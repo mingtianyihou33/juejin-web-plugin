@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import './index.scss'
 import './theme.less'
@@ -10,10 +10,15 @@ import { Provider } from 'react-redux'
 import store from '../store/index'
 import { createService } from '../plugins/axios'
 import { loadArticleList } from '../store/actions/article'
+import { ARTICLE_SET_LIST } from '../store/actionTypes'
 
 const { Content } = Layout
 
 function Home (props) {
+  // 设置文章列表
+  if (props.articleList) {
+    store.dispatch({ type: ARTICLE_SET_LIST, list: props.articleList })
+  }
   return (
     <Provider store={store}>
       <Head>
@@ -23,8 +28,8 @@ function Home (props) {
       <Layout className='full'>
         <Header/>
         <Content className='main'>
-          <Row gutter={24}>
-            <Col span={8}>
+          <Row gutter={24} className='full-v'>
+            <Col span={8} className='full-v'>
               <Articles/>
             </Col>
             <Col span={16} className='border'></Col>
@@ -35,11 +40,11 @@ function Home (props) {
 }
 
 // 服务端渲染时加载首屏数据
-// Home.getInitialProps = async (context) => {
-//   // console.log('server load data', context)
-//   // const server = createService('https://extension-ms.juejin.im/')
-//   // 文章列表
-//   // await loadArticleList(store.dispatch, store.getState, server)
-//   return {}
-// }
+Home.getInitialProps = async () => {
+  console.log('server load data')
+  const server = createService('https://extension-ms.juejin.im/')
+  // 文章列表
+  let articleList = await loadArticleList(null, store.getState, server)
+  return { articleList }
+}
 export default Home

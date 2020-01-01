@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './articles.scss'
-import { Select } from 'antd'
-import { changeCategory, changeOrder } from '../../store/actions/article'
+import { Select, Icon } from 'antd'
+import { changeCategory, changeOrder, loadArticleList } from '../../store/actions/article'
 import { connect } from 'react-redux'
 import { getTimeToNow } from '../../util/dateUtil'
 
@@ -31,13 +31,16 @@ const orders = [
 function Articles (props) {
   const list = props.list.map(item => {
     return (
-      <a key={item.id} href={item.url}>
-        <span>{item.collectionCount}</span>
-        <div>
-          <div>{item.title}</div>
-          <div>
-            <span>{getTimeToNow(item.date.iso)}</span>
-            <span>{item.user.username}</span>
+      <a className='article-item' key={item.id} href={item.url} target='_blank'>
+        <div className='count-box'>
+          <Icon type="caret-up"/>
+          <div className='count'>{item.collectionCount}</div>
+        </div>
+        <div className='article-item-content'>
+          <div className='title'>{item.title}</div>
+          <div className='desc'>
+            <span className='desc-item'>{getTimeToNow(item.date.iso)}</span>
+            <span className='desc-item'>{item.user.username}</span>
           </div>
         </div>
       </a>
@@ -67,7 +70,7 @@ function Articles (props) {
               </span>
         ))}
       </div>
-      <div>
+      <div className='content-box'>
         {list}
       </div>
     </div>

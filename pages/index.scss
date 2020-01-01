@@ -19,6 +19,7 @@
   min-height: 3.5rem;
   padding: 0 .4rem;
   margin-right: .8rem;
+  margin-bottom: 1.2rem;
 
   img.icon {
     width: 2.833rem;
@@ -43,6 +44,10 @@
       opacity: 1;
     }
   }
+}
+
+.content-box {
+  overflow: scroll;
 }
 
 .select-border-none {
