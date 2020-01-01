@@ -1,5 +1,10 @@
 import {
-  PROJECT_CHANGE_CATEGORY, PROJECT_CHANGE_LANG, PROJECT_CHANGE_PERIOD, PROJECT_PUSH_LIST, PROJECT_SET_LIST
+  PROJECT_ADD_OFFSET,
+  PROJECT_CHANGE_CATEGORY,
+  PROJECT_CHANGE_LANG,
+  PROJECT_CHANGE_PERIOD,
+  PROJECT_PUSH_LIST,
+  PROJECT_SET_LIST
 } from '../actionTypes'
 
 export const initState = {
@@ -10,6 +15,7 @@ export const initState = {
   limit: 30,
   list: []
 }
+
 export default function (state = initState, action) {
   switch (action.type) {
     case PROJECT_CHANGE_CATEGORY:
@@ -21,11 +27,14 @@ export default function (state = initState, action) {
     case PROJECT_CHANGE_LANG:
       state.lang = action.lang
       break
+    case PROJECT_ADD_OFFSET:
+      state.offset += state.limit
+      break
     case PROJECT_SET_LIST:
       state.list = action.list || []
       break
     case PROJECT_PUSH_LIST:
-      state.list.push(...action.list)
+      state.list = [...state.list, ...action.list]
       break
   }
   return { ...state }

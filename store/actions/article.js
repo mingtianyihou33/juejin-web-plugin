@@ -2,17 +2,8 @@ import {
   ARTICLE_CHANGE_ORDER,
   ARTICLE_CHANGE_CATEGORY,
   ARTICLE_PUSH_LIST,
-  ARTICLE_SET_LIST,
-  CHANGE_CATEGORY
+  ARTICLE_SET_LIST, ARTICLE_ADD_OFFSET,
 } from '../actionTypes'
-
-const initState = {
-  category: 'frontend',
-  order: 'heat',// time
-  offset: 0,
-  limit: 30,
-  list: []
-}
 
 export function changeCategory (category) {
   return (dispatch, getState, axios) => {
@@ -22,16 +13,27 @@ export function changeCategory (category) {
 }
 
 export function changeOrder (order) {
-  return (dispatch, getState) => {
+  return (dispatch, getState, axios) => {
     dispatch({ type: ARTICLE_CHANGE_ORDER, order })
+    loadArticleList(dispatch, getState, axios)
   }
 }
 
-export async function loadArticleList (dispatch, getState, axios) {
+export function loadMore () {
+  return async (dispatch, getState, axios) => {
+    dispatch({ type: ARTICLE_ADD_OFFSET })
+    await loadArticleList(dispatch, getState, axios, true)
+  }
+}
+
+export async function loadArticleList (dispatch, getState, axios, push = false) {
   let { list, ...other } = getState().article
   try {
     let res = await axios.post('resources/gold', other)
-    dispatch && dispatch({ type: ARTICLE_SET_LIST, list: res })
+    dispatch && (push ? dispatch({ type: ARTICLE_PUSH_LIST, list: res }) : dispatch({
+      type: ARTICLE_SET_LIST,
+      list: res
+    }))
     return res
   } catch (e) {
     console.error(e)

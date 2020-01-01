@@ -2,17 +2,10 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  flex-wrap: nowrap;
-
-  .content-box {
-    flex: 1;
-    height: 200px;
-  }
 
   .article-item {
     display: flex;
     padding: .4rem;
-    margin-right: .8rem;
     margin-bottom: .8rem;
     border-radius: 2px;
     background-color: #ffffff;

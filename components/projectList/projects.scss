@@ -1,0 +1,51 @@
+.project {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  .project-item {
+    display: block;
+    padding: 20px;
+    background: #ffffff;
+
+    .title {
+      margin-bottom: 8px;
+      font-size: 1.334rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #0366d6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+    }
+
+    .title-text:hover {
+      text-decoration: underline;
+    }
+
+    .desc {
+      height: 60px;
+      color: #333;
+      line-height: 20px;
+      font-size: 14px;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta {
+      margin-top: 15px;
+      font-size: 1.167rem;
+      font-weight: 700;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .meta-item {
+      margin-right: 25px;
+    }
+  }
+}

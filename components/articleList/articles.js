@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './articles.scss'
 import { Select, Icon } from 'antd'
-import { changeCategory, changeOrder, loadArticleList } from '../../store/actions/article'
+import { changeCategory, changeOrder, loadMore } from '../../store/actions/article'
 import { connect } from 'react-redux'
 import { getTimeToNow } from '../../util/dateUtil'
+import { scrollLoadMore } from '../../util/eventUtil'
 
 const { Option } = Select
 const mapStateToProps = state => (
@@ -15,7 +16,8 @@ const mapStateToProps = state => (
 )
 const mapDispatchToProps = {
   changeCategory,
-  changeOrder
+  changeOrder,
+  loadMore
 }
 
 const categories = [
@@ -48,7 +50,7 @@ function Articles (props) {
   })
 
   return (
-    <div className='border article'>
+    <div className='article'>
       <div className='content-navbar bg-primary text-md'>
         <img className='icon' src='favicon.ico'/>
         <span className='navbar-title text-lg'>掘金</span>
@@ -70,7 +72,7 @@ function Articles (props) {
               </span>
         ))}
       </div>
-      <div className='content-box'>
+      <div className='content-box' onScroll={scrollLoadMore(props.loadMore)}>
         {list}
       </div>
     </div>
