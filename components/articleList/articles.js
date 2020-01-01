@@ -1,6 +1,6 @@
 import React from 'react'
 import './articles.scss'
-import { Select, Icon } from 'antd'
+import { Select, Icon, Col } from 'antd'
 import { changeCategory, changeOrder, loadMore } from '../../store/actions/article'
 import { connect } from 'react-redux'
 import { getTimeToNow } from '../../util/dateUtil'
@@ -11,7 +11,8 @@ const mapStateToProps = state => (
   {
     category: state.article.category,
     order: state.article.order,
-    list: state.article.list
+    list: state.article.list,
+    loadEnd: state.article.loadEnd
   }
 )
 const mapDispatchToProps = {
@@ -74,6 +75,7 @@ function Articles (props) {
       </div>
       <div className='content-box' onScroll={scrollLoadMore(props.loadMore)}>
         {list}
+        {props.loadEnd && <div className='list-end-bar'>已显示全部内容</div>}
       </div>
     </div>
   )

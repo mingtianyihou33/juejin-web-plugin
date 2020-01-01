@@ -12,7 +12,8 @@ const mapStateToProps = state => (
     category: state.project.category,
     period: state.project.period,
     lang: state.project.lang,
-    list: state.project.list
+    list: state.project.list,
+    loadEnd: state.project.loadEnd
   }
 )
 const mapDispatchToProps = {
@@ -44,7 +45,7 @@ function getLangColor (lang) {
 
 function Projects (props) {
   const langColor = getLangColor(props.lang)
-  const list = props.list.map(item => {
+  let list = props.list.map(item => {
     return (
       <Col key={item.id} xl={12} span={24}>
         <a className='project-item' href={item.url} target='_blank'>
@@ -64,7 +65,6 @@ function Projects (props) {
       </Col>
     )
   })
-
   return (
     <div className='project'>
       <div className='content-navbar bg-primary text-md'>
@@ -102,6 +102,7 @@ function Projects (props) {
       </div>
       <Row gutter={[16, 16]} className='content-box' onScroll={scrollLoadMore(props.loadMore)}>
         {list}
+        {props.loadEnd && <Col span={24} className='list-end-bar'>已显示全部内容</Col>}
       </Row>
     </div>
   )

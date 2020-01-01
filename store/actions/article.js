@@ -2,12 +2,13 @@ import {
   ARTICLE_CHANGE_ORDER,
   ARTICLE_CHANGE_CATEGORY,
   ARTICLE_PUSH_LIST,
-  ARTICLE_SET_LIST, ARTICLE_ADD_OFFSET,
+  ARTICLE_SET_LIST, ARTICLE_ADD_OFFSET, ARTICLE_INIT_PAGE,
 } from '../actionTypes'
 
 export function changeCategory (category) {
   return (dispatch, getState, axios) => {
     dispatch({ type: ARTICLE_CHANGE_CATEGORY, category })
+    dispatch({ type: ARTICLE_INIT_PAGE })
     loadArticleList(dispatch, getState, axios)
   }
 }
@@ -15,6 +16,7 @@ export function changeCategory (category) {
 export function changeOrder (order) {
   return (dispatch, getState, axios) => {
     dispatch({ type: ARTICLE_CHANGE_ORDER, order })
+    dispatch({ type: ARTICLE_INIT_PAGE })
     loadArticleList(dispatch, getState, axios)
   }
 }

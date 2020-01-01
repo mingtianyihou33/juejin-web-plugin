@@ -4,12 +4,13 @@ import {
   PROJECT_CHANGE_CATEGORY,
   PROJECT_CHANGE_LANG,
   PROJECT_ADD_OFFSET,
-  PROJECT_PUSH_LIST
+  PROJECT_PUSH_LIST, PROJECT_INIT_PAGE
 } from '../actionTypes'
 
 export function changeCategory (category) {
   return (dispatch, getState, axios) => {
     dispatch({ type: PROJECT_CHANGE_CATEGORY, category })
+    dispatch({ type: PROJECT_INIT_PAGE })
     loadProjectList(dispatch, getState, axios)
   }
 }
@@ -17,6 +18,7 @@ export function changeCategory (category) {
 export function changePeriod (period) {
   return (dispatch, getState, axios) => {
     dispatch({ type: PROJECT_CHANGE_PERIOD, period })
+    dispatch({ type: PROJECT_INIT_PAGE })
     loadProjectList(dispatch, getState, axios)
   }
 }
